@@ -16,28 +16,28 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   footer {
     display: flex;
     align-items: center;
 
     margin-top: 80px;
-  }
 
-  footer img {
-    width: 32px;
-    height: 32px;
+    img {
+      width: 32px;
+      height: 32px;
 
-    margin-right: 8px;
-  }
+      margin-right: 8px;
+    }
 
-  footer p {
-    color: var(--text);
-    font-size: 20px;
-    font-weight: 300;
-  }
+    p {
+      color: $text;
+      font-size: 20px;
+      font-weight: 300;
 
-  footer p a {
-    color: var(--text);
+      a {
+        color: $text-secondary;
+      }
+    }
   }
 </style>
