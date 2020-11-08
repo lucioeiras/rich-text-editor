@@ -1,4 +1,4 @@
-# rich-text
+# rich-text-editor
 
 ## Project setup
 ```
