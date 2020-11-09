@@ -12,7 +12,7 @@
 <br>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/67290471/98586166-1ad54780-22a7-11eb-91d0-113f97e4a937.gif" alt="Vue Counter"/>
+  <img src="https://user-images.githubusercontent.com/67290471/98587496-fd08e200-22a8-11eb-9d7c-210e56cf748a.gif" alt="Rich Text Editor"/>
 </p>
 
 <br>
