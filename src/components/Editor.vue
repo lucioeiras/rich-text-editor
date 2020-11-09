@@ -1,48 +1,74 @@
 <template>
   <div id="editor">
-    <div id="actions" >
-      <button 
-        v-bind:key="index" 
-        v-for="(action, index) in actions"
-        :class="action.class"
-        @click="action.onClick"
-      >{{ action.display }}</button>
+    <div id="actions">
+      <div class="heading">
+        <button @click="toogleAction('formatblock', 'h1')">H1</button>
+        <button @click="toogleAction('formatblock', 'h2')">H2</button>
+        <button @click="toogleAction('formatblock', 'h3')">H3</button>
+        <button @click="toogleAction('formatblock', 'p')">P</button>
+      </div>
+
+      <div class="text">
+        <button class="bold" @click="toogleAction('bold', null)">B</button>
+        <button class="italic" @click="toogleAction('italic', null)">I</button>
+        <button class="underlined" @click="toogleAction('underline', null)">U</button>
+      </div>
+
+      <div class="align">
+        <button @click="toogleAction('justifyleft', null)">
+          <AlignLeft 
+            :color="isHover[0] ? '#43B883' : '#6D7786'" 
+            @mouseenter="isHover[0] = true"
+            @mouseleave="isHover[0] = false"
+          />
+        </button>
+        <button @click="toogleAction('justifycenter', null)">
+          <AlignCenter 
+            :color="isHover[1] ? '#43B883' : '#6D7786'" 
+            @mouseenter="isHover[1] = true"
+            @mouseleave="isHover[1] = false"
+          />
+        </button>
+        <button @click="toogleAction('justifyright', null)">
+          <AlignRight
+            :color="isHover[2] ? '#43B883' : '#6D7786'" 
+            @mouseenter="isHover[2] = true"
+            @mouseleave="isHover[2] = false"
+          />
+        </button>
+        <button @click="toogleAction('justifyfull', null)">
+          <AlignJustify 
+            :color="isHover[3] ? '#43B883' : '#6D7786'"  
+            @mouseenter="isHover[3] = true"
+            @mouseleave="isHover[3] = false"
+          />
+        </button>
+      </div>
     </div>
 
-    <hr>
-
-    <div ref="editor" class="text-editor" contenteditable="true"></div>
+    <div ref="editor" id="text-editor" contenteditable="true"></div>
   </div>
 </template>
 
 <script>
+  import AlignLeft from '../components/icons/AlignLeft'
+  import AlignCenter from '../components/icons/AlignCenter'
+  import AlignRight from '../components/icons/AlignRight'
+  import AlignJustify from '../components/icons/AlignJustify'
+
   export default {
     name: 'Editor',
 
+    components: {
+      AlignLeft,
+      AlignCenter,
+      AlignRight,
+      AlignJustify
+    },
+
     data() {
       return {
-        actions: [
-          {
-            display: 'T',
-            class: 'title',
-            onClick: () => this.toogleAction('formatblock', 'h1'),
-          },
-          {
-            display: 'B',
-            class: 'bold',
-            onClick: () => this.toogleAction('bold', null),
-          },
-          {
-            display: 'I',
-            class: 'italic',
-            onClick: () => this.toogleAction('italic', null),
-          },
-          {
-            display: 'U',
-            class: 'underlined',
-            onClick: () => this.toogleAction('underline', null),
-          },
-        ],
+        isHover: [false, false, false, false]
       }
     },
 
@@ -62,25 +88,22 @@
   #editor {
     width: 100%;
     max-width: 960px;
-
-    border-radius: 8px;
-    background: $card;
-
-    padding: 40px;
-
-    hr {
-      height: 2px;
-
-      border: none;
-      border-radius: 2px;
-
-      background: $divider;
-
-      margin: 20px 0 32px 0;
-    }
   }
 
   #actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: $actions;
+
+    border-radius: 8px 8px 0 0;
+    padding: 24px 40px;
+
+    .align {
+      max-height: 24px;
+    }
+
     button {
       cursor: pointer;
 
@@ -97,10 +120,13 @@
       &:hover {
         color: $primary;
       }
-    }
 
-    .active {
-      color: $primary;
+      img {
+        width: 24px;
+        height: 24px;
+
+        color: $buttons;
+      }
     }
 
     .bold {
@@ -116,10 +142,30 @@
     }
   }
 
-  .text-editor {
-    height: 320px;
+  #text-editor {
+    min-height: 320px;
+
+    border-radius: 0 0 8px 8px;
+    background: $editor;
 
     color: $text;
     font-size: 20px;
+
+    padding: 40px;
+  }
+
+  h1 {
+    color: $titles;
+    font-size: 48px;
+  }
+
+  h2 {
+    color: $titles;
+    font-size: 40px;
+  }
+
+  h3 {
+    color: $titles;
+    font-size: 32px;
   }
 </style>
