@@ -18,12 +18,13 @@
 
 <style lang="scss">
   #app {
+    height: 100%;
     width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    padding: 64px 0;
+    padding: 72px 0;
   }
 </style>
