@@ -31,7 +31,7 @@
     }
 
     p {
-      color: $text;
+      color: $text-secondary;
       font-size: 20px;
       font-weight: 300;
 
