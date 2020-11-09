@@ -1,20 +1,30 @@
 <template>
   <div id="editor">
-    <div id="actions">
-      <button class="title">T</button>
-      <button class="bold">B</button>
-      <button class="italic">I</button>
-      <button class="underlined">U</button>
-      <button class="code">&lt;&gt;</button>
-      <button class="list">●</button>
-      <button class="quote">"</button>
+    <div id="actions" >
+      <button 
+        v-bind:key="index" 
+        v-for="(action, index) in actions"
+        :class="[
+          action.class,
+          action.isActive && 'active'
+        ]"
+        @click="action.onClick"
+      >{{ action.display }}</button>
     </div>
+
     <hr>
-    <div id="text-inputs" v-bind:key="index"  v-for="(line, index) in lines">
+
+    <div id="text-inputs">
       <input
-        :ref="String(index)"
+        v-bind:key="index"  
+        v-for="(line, index) in lines"
         v-model="line.value"
+
         @keyup.enter="goToNextLine(index)"
+        @keyup.delete="removeLine(index)"
+        @focus="getFocus(index)"
+
+        :ref="String(index)"
         :class="[
           line.isTitle && 'title',
           line.isBold && 'bold',
@@ -27,35 +37,98 @@
 </template>
 
 <script>
-
   export default {
     name: 'Editor',
 
     data() {
       return {
+        actions: [
+          {
+            display: 'T',
+            class: 'title',
+            onClick: () => this.toogleAction('isTitle'),
+            isActive: false,
+          },
+          {
+            display: 'B',
+            class: 'bold',
+            onClick: () => this.toogleAction('isBold'),
+            isActive: false,
+          },
+          {
+            display: 'I',
+            class: 'italic',
+            onClick: () => this.toogleAction('isItalic'),
+            isActive: false,
+          },
+          {
+            display: 'U',
+            class: 'underlined',
+            onClick: () => this.toogleAction('isUnderlined'),
+            isActive: false,
+          },
+        ],
         lines: []
       }
     },
 
     methods: {
-      goToNextLine(line) {
-        if (line === this.lines.length - 1) {
-          this.addLine();
-        }
-
-        const nextLine = String(line + 1);
-        this.$refs[nextLine].focus();
-      },
-
       addLine() {
         this.lines.push({ 
           value: '',
+          focus: false,
+
           isTitle: false,
           isBold: false,
           isItalic: false,
           isUnderlined: false,
         });
       },
+
+      goToNextLine(lineIndex) {
+        if (lineIndex === this.lines.length - 1) {
+          this.addLine();
+        }
+
+        const nextLine = String(lineIndex + 1);
+        this.$refs[nextLine].focus();
+      },
+
+      removeLine(lineIndex) {
+        if (
+          this.lines[lineIndex].value === '' 
+          && this.lines.length > 1
+        ) {
+          this.lines.splice(lineIndex, 1);
+
+          const previousLine = String(lineIndex - 1);
+          this.$refs[previousLine].focus();
+        }
+      },
+
+      getFocus(lineIndex) {
+        this.lines.map((line, index) => {
+          if (line.focus) {
+            line.focus = false;
+          }
+
+          if (lineIndex === index) {
+            line.focus = true;
+          }
+
+          return line;
+        });
+      },
+
+      toogleAction(action) {
+        this.lines.map(line => {
+          if (line.focus) {
+            line[action] = !line[action];
+          }
+
+          return line;
+        });
+      }
     },
 
     mounted() {
@@ -103,6 +176,10 @@
       &:hover {
         color: $primary;
       }
+    }
+
+    .active {
+      color: $primary;
     }
   }
 
