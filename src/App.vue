@@ -1,17 +1,14 @@
 <template>
-  <Editor />
-  <Footer />
+  <Home />
 </template>
 
 <script>
-  import Editor from './components/Editor';
-  import Footer from './components/Footer';
+  import Home from './components/templates/Home'
 
   export default {
     name: 'App',
     components: {
-      Editor,
-      Footer,
+      Home
     }
   }
 </script>

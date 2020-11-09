@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <img alt="Vue" src="../assets/logo.png">
+    <img alt="Vue" src="../../assets/logo.png">
     <p>
       Criado com Vue.js por 
       <a href="https://www.github.com/lucioeiras" target="_blank">
