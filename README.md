@@ -29,13 +29,15 @@ Esse projeto foi desevolvido com [Vue.js](https://vuejs.org/), um framework Java
 
 <br>
 
-<h2 id="learn">🧐 Ferramentas</h2>
+<h2 id="learn">🧐 O que eu aprendi</h2>
 
 Construindo esse projeto, eu aprendi os seguintes conceitos sobre Vue:
 
--  Criação de projetos Vue 3
--  Single File Components
--  data, methods, v-on
+-  Criação de componentes complexos
+-  Métodos de clico de vida
+-  Propriedades de elementos como v-for
+-  Estilos dinâmicos
+-  Usar SCSS com Vue
 
 <br>
 
