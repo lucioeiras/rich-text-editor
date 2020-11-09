@@ -9,9 +9,18 @@
       </div>
 
       <div class="text">
-        <button class="bold" @click="toogleAction('bold', null)">B</button>
-        <button class="italic" @click="toogleAction('italic', null)">I</button>
-        <button class="underlined" @click="toogleAction('underline', null)">U</button>
+        <button 
+          class="bold" 
+          @click="toogleAction('bold', null)"
+        >B</button>
+        <button 
+          class="italic" 
+          @click="toogleAction('italic', null)"
+        >I</button>
+        <button 
+          class="underlined" 
+          @click="toogleAction('underline', null)"
+        >U</button>
       </div>
 
       <div class="align">
@@ -46,7 +55,12 @@
       </div>
     </div>
 
-    <div ref="editor" id="text-editor" contenteditable="true"></div>
+    <div 
+      ref="editor" 
+      id="text-editor" 
+      contenteditable="true" 
+      @paste="(e) => preventPaste(e)"
+    ></div>
   </div>
 </template>
 
@@ -55,6 +69,8 @@
   import AlignCenter from '../components/icons/AlignCenter'
   import AlignRight from '../components/icons/AlignRight'
   import AlignJustify from '../components/icons/AlignJustify'
+
+  import formatPaste from '../utils/formatPaste'
 
   export default {
     name: 'Editor',
@@ -75,7 +91,11 @@
     methods: {
       toogleAction(action, value) {
         document.execCommand(action, false, value);
-      }
+      },
+
+      preventPaste(e) {
+        formatPaste(e)
+      },
     },
 
     mounted() {
@@ -143,7 +163,7 @@
   }
 
   #text-editor {
-    min-height: 320px;
+    min-height: 560px;
 
     border-radius: 0 0 8px 8px;
     background: $editor;
