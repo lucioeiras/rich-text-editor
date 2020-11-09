@@ -22,6 +22,8 @@
 
         @keyup.enter="goToNextLine(index)"
         @keyup.delete="removeLine(index)"
+        @keyup.up="moveUp(index)"
+        @keyup.down="moveDown(index)"
         @focus="getFocus(index)"
 
         :ref="String(index)"
@@ -46,26 +48,26 @@
           {
             display: 'T',
             class: 'title',
-            onClick: () => this.toogleAction('isTitle'),
             isActive: false,
+            onClick: () => this.toogleAction('isTitle'),
           },
           {
             display: 'B',
             class: 'bold',
-            onClick: () => this.toogleAction('isBold'),
             isActive: false,
+            onClick: () => this.toogleAction('isBold'),
           },
           {
             display: 'I',
             class: 'italic',
-            onClick: () => this.toogleAction('isItalic'),
             isActive: false,
+            onClick: () => this.toogleAction('isItalic'),
           },
           {
             display: 'U',
             class: 'underlined',
-            onClick: () => this.toogleAction('isUnderlined'),
             isActive: false,
+            onClick: () => this.toogleAction('isUnderlined'),
           },
         ],
         lines: []
@@ -106,14 +108,58 @@
         }
       },
 
+      moveUp(lineIndex) {
+        if (lineIndex === 0) {
+          return
+        }
+
+        const previousLine = String(lineIndex - 1);
+        this.$refs[previousLine].focus();
+      },
+
+      moveDown(lineIndex) {
+        if (lineIndex === this.lines.length - 1) {
+          return
+        }
+
+        const nextLine = String(lineIndex + 1);
+        this.$refs[nextLine].focus();
+      },
+
       getFocus(lineIndex) {
         this.lines.map((line, index) => {
+          this.actions.map(action => {
+            if (action.isActive) {
+              action.isActive = false;
+            }
+
+            return action;
+          });
+
           if (line.focus) {
             line.focus = false;
           }
 
           if (lineIndex === index) {
             line.focus = true;
+
+            this.lines.forEach(line => {
+              if (line.isTitle) {
+                this.actions[0].isActive = true;
+              }
+
+              if (line.isBold) {
+                this.actions[1].isActive = true;
+              }
+
+              if (line.isItalic) {
+                this.actions[2].isActive = true;
+              }
+
+              if (line.isUnderlined) {
+                this.actions[3].isActive = true;
+              }
+            });
           }
 
           return line;
@@ -124,6 +170,22 @@
         this.lines.map(line => {
           if (line.focus) {
             line[action] = !line[action];
+          }
+
+          if (action === 'isTitle') {
+            this.actions[0].isActive = true;
+          }
+
+          if (action === 'isBold') {
+            this.actions[1].isActive = true;
+          }
+
+          if (action === 'isItalic') {
+            this.actions[2].isActive = true;
+          }
+
+          if (action === 'isUnderlined') {
+            this.actions[3].isActive = true;
           }
 
           return line;
@@ -188,6 +250,8 @@
     flex-direction: column;
 
     input {
+      max-width: 920;
+
       border: none;
       background: none;
 
@@ -200,6 +264,7 @@
     .title {
       font-size: 48px;
       font-weight: 900;
+      padding-bottom: 8px;
     }
   }
 
