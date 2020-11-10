@@ -1,18 +1,21 @@
 <template>
+  <Header />
   <Editor />
-  <Footer />
+  <Saved />
 </template>
 
 <script>
+  import Header from '../organisms/Header';
   import Editor from '../organisms/Editor';
-  import Footer from '../organisms/Footer';
+  import Saved from '../organisms/Saved';
 
   export default {
     name: 'Home',
     
     components: {
       Editor,
-      Footer,
+      Header,
+      Saved,
     }
   }
 </script>

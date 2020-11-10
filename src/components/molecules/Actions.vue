@@ -28,7 +28,7 @@
     align-items: center;
     justify-content: space-between;
 
-    background: $actions;
+    background: $actions-background;
 
     border-radius: 8px 8px 0 0;
     padding: 24px 40px;
@@ -39,7 +39,7 @@
       border: none;
       background: none;
 
-      color: $buttons;
+      color: $actions;
       font-size: 24px;
 
       &:not(:first-child) {
