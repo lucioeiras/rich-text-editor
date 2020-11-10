@@ -22,6 +22,6 @@
     flex-direction: column;
     align-items: center;
 
-    padding: 72px 0;
+    padding: 48px 0;
   }
 </style>
