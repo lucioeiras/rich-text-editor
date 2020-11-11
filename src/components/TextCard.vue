@@ -1,15 +1,26 @@
 <template>
-  <div class="saved-text">
-    <div ref="text" class="content"></div>
+  <div class="text-card">
+    <div 
+      ref="text" 
+      class="content" 
+      @click="handleNavigateToEditor()"
+    ></div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'SavedText',
+    name: 'TextCard',
 
     props: {
+      index: Number,
       content: String,
+    },
+
+    methods: {
+      handleNavigateToEditor() {
+        this.$router.push(`/edit/${this.index}`)
+      }
     },
 
     mounted() {
@@ -18,8 +29,8 @@
   }
 </script>
 
-<style lang="scss">
-  .saved-text {
+<style lang="scss" scoped>
+  .text-card {
     cursor: pointer;
 
     border-radius: 8px;
@@ -39,6 +50,8 @@
       height: 100%;
       max-height: 240px;
 
+      color: $texts;
+
       overflow: hidden;
       padding: 24px;
 
@@ -47,6 +60,10 @@
 
       &:hover {
         opacity: 1;
+      }
+
+      h1, h2, h3 {
+        color: $titles !important;
       }
     }
   }

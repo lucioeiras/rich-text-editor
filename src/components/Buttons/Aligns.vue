@@ -35,10 +35,10 @@
 </template>
 
 <script>
-  import AlignLeft from '../../assets/icons/AlignLeft'
-  import AlignCenter from '../../assets/icons/AlignCenter'
-  import AlignRight from '../../assets/icons/AlignRight'
-  import AlignJustify from '../../assets/icons/AlignJustify'
+  import AlignLeft from '../icons/AlignLeft'
+  import AlignCenter from '../icons/AlignCenter'
+  import AlignRight from '../icons/AlignRight'
+  import AlignJustify from '../icons/AlignJustify'
 
   import toogleAction from '../../utils/toogleAction'
 
@@ -64,11 +64,23 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .aligns {
     max-height: 24px;
 
     button {
+      cursor: pointer;
+
+      border: none;
+      background: none;
+
+      color: $actions;
+      font-size: 24px;
+
+      &:not(:first-child) {
+        margin-left: 48px;
+      }
+
       img {
         width: 24px;
         height: 24px;

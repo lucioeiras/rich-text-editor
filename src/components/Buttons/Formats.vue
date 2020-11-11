@@ -29,16 +29,36 @@
   }
 </script>
 
-<style>
-  .bold {
-    font-weight: 700;
-  }
+<style lang="scss" scoped>
+  .formats {
+    button {
+      cursor: pointer;
 
-  .italic {
-    font-style: italic;
-  }
+      border: none;
+      background: none;
 
-  .underlined {
-    text-decoration-line: underline;
+      color: $actions;
+      font-size: 24px;
+
+      &:not(:first-child) {
+        margin-left: 48px;
+      }
+
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    .bold {
+      font-weight: 700;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    .underlined {
+      text-decoration-line: underline;
+    }
   }
 </style>

@@ -1,17 +1,6 @@
 <template>
-  <Home />
+  <router-view/>
 </template>
-
-<script>
-  import Home from './components/templates/Home'
-
-  export default {
-    name: 'App',
-    components: {
-      Home
-    }
-  }
-</script>
 
 <style lang="scss">
   #app {
@@ -21,7 +10,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding: 48px 0;
   }
 </style>
+
