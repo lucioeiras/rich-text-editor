@@ -12,14 +12,14 @@
 <br>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/67290471/98587496-fd08e200-22a8-11eb-9d7c-210e56cf748a.gif" alt="Rich Text Editor"/>
+  <img src="https://user-images.githubusercontent.com/67290471/98868587-24011880-244f-11eb-8a0d-bc4cb9c8501d.gif" alt="Rich Text Editor"/>
 </p>
 
 <br>
 
 <h2 id="techs">😁 Sobre </h2>
 
-Um editor com formatação Rich-Text, onde você pode adicionar títulos, alinhamento, etc.. Inspirado [nesse](https://www.youtube.com/watch?v=fYR9L2ZmodM) vídeo do Filipe Deschamps. Você pode testar o projeto [aqui](https://vue-rich-text.netlify.app/).
+Um editor com formatação Rich-Text, onde você pode criar um texto, formatá-lo, salvá-lo e editá-lo quando quiser. Inspirado [nesse](https://www.youtube.com/watch?v=fYR9L2ZmodM) vídeo do Filipe Deschamps. Você pode testar o projeto [aqui](https://vue-rich-text.netlify.app/).
 
 <br>
 
@@ -37,7 +37,8 @@ Construindo esse projeto, eu aprendi os seguintes conceitos sobre Vue:
 -  Métodos de clico de vida
 -  Propriedades de elementos como v-for
 -  Estilos dinâmicos
--  Usar SCSS com Vue
+-  Integrar SCSS com o Vue
+-  Rotas com vue-router
 
 <br>
 
